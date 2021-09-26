@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="light">#FFCDE4F2</color>
+    <color name="sky">#FF97D2E0</color>
+    <color name="night">#FF7B94B5</color>
+
+    <color name="pink">#FFCDD2</color>
+    <color name="lilac">#947087</color>
+    <color name="plum">#513E5E</color>
+    <color name="violet">#22152B</color>
+
+    <color name="cocoa">#BFA491</color>
+    <color name="latte">#A77A5A</color>
+    <color name="brown">#FF8B4E47</color>
+    <color name="bark">#432C30</color>
+
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="blue">#002B6F</color>
+    <color name="red">#580000</color>
+    <color name="green">#005804</color>
+
+    <color name="white_transparent">#01FFFFFF</color>
+    <color name="shadow">#33000000</color>
+</resources>
