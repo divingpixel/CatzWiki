@@ -47,7 +47,7 @@ class CatListFragment : BaseFragment<CatListViewModel>(CatListViewModel::class) 
 				layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
 				adapter = catListAdapter
 				if (itemDecorationCount > 1) removeItemDecorationAt(1)
-				addItemDecoration(ListVerticalDecorator(R.dimen.double_thickness), 0)
+				addItemDecoration(ListVerticalDecorator(R.dimen.double_thickness,0,true), 0)
 			}
 			catCountry.adapter = countryListAdapter
 		}

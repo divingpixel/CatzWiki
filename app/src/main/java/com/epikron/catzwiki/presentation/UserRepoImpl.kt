@@ -23,7 +23,7 @@ class UserRepoImpl @Inject constructor(
 				email = email,
 				name = email.split("@").first().split(".", "_")
 					.joinToString(" ") { it.capitalizeFirstLetter() },
-				returnCode = listOf(SUCCESS, UNKNOWN, SUCCESS, WRONG_CREDENTIALS, SUCCESS).random()
+				returnCode = SUCCESS //listOf(SUCCESS, UNKNOWN, SUCCESS, WRONG_CREDENTIALS, SUCCESS).random()
 			)
 		)
 
