@@ -156,7 +156,6 @@ class BottomSheetFragment(
 			peekHeight = height
 			setCustomBehaviour()
 		}
-		//Write("THE BOTTOM SHEET PEEK HEIGHT IS : $height")
 	}
 
 	private fun BottomSheetBehavior<View>.setCustomBehaviour(onStateChangedBehaviour: (newState: Int) -> Unit = {}) {
