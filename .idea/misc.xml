@@ -30,8 +30,13 @@
         <entry key="..\:/Users/bogda/AndroidStudioProjects/CatzWiki/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.6375" />
         <entry key="..\:/Users/bogda/AppData/Local/Android/Sdk/platforms/android-30/data/res/layout/simple_spinner_dropdown_item.xml" value="0.3671875" />
         <entry key="..\:/Users/bogda/AppData/Local/Android/Sdk/platforms/android-30/data/res/layout/simple_spinner_item.xml" value="0.5994791666666667" />
+        <entry key="app/src/main/res/layout/bottom_sheet_dialog.xml" value="0.3619791666666667" />
         <entry key="app/src/main/res/layout/fragment_cat_detail.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/fragment_cat_list.xml" value="0.34791666666666665" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/view_cat_button.xml" value="0.34791666666666665" />
+        <entry key="app/src/main/res/layout/view_price_line.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/view_subtotal_section.xml" value="0.34791666666666665" />
       </map>
     </option>
   </component>

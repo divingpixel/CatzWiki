@@ -15,6 +15,8 @@ import com.epikron.catzwiki.ui.views.CatButtonViewData
 import com.epikron.catzwiki.ui.adapters.CatListViewAdapter
 import com.epikron.catzwiki.ui.ListVerticalDecorator
 import com.epikron.catzwiki.ui.popInfoDialog
+import com.epikron.catzwiki.ui.views.PriceLineViewData
+import com.epikron.catzwiki.ui.views.SubtotalSectionViewData
 import com.epikron.catzwiki.utils.*
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlin.collections.ArrayList
@@ -93,6 +95,9 @@ class CatListFragment : BaseFragment<CatListViewModel>(CatListViewModel::class) 
 		countryListAdapter.clear()
 		countryListAdapter.addAll(countries)
 		countryListAdapter.notifyDataSetChanged()
+
+		binding.subtotal.state = SubtotalSectionViewData( "Subtotal","$123.01", listOf(PriceLineViewData("Test","details","$11.23"),
+			PriceLineViewData("Test1",null,"$11.23"),PriceLineViewData("Test2","details","$11.23")))
 	}
 
 	private fun setListeners() {

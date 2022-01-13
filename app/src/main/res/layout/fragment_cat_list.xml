@@ -44,6 +44,15 @@
         app:layout_constraintTop_toTopOf="@+id/cat_list"
         app:srcCompat="@drawable/vertical_dark_gradient" />
 
+    <com.epikron.catzwiki.ui.views.SubtotalSectionView
+        android:id="@+id/subtotal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cat_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/cat_list_bottom"
         android:layout_width="0dp"
