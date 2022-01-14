@@ -40,7 +40,7 @@ abstract class BaseFragment<VM : ViewModel>(private val viewModelClass: KClass<V
 	@CallSuper
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(viewModelClass.java)
+		viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[viewModelClass.java]
 		requestPermissionLauncher =
 			registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
 				if (isGranted) permissionPositiveAction?.invoke() else permissionNegativeAction?.invoke()

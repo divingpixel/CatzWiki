@@ -22,9 +22,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 object BottomFragment {
 
-	enum class FragmentType(val fullScreen: Boolean? = true) {
-		CAT_DETAILS
-	}
+	enum class FragmentType(val fullScreen: Boolean? = true) { CAT_DETAILS }
 
 	private val fragmentsList: ArrayList<FragmentType> = arrayListOf()
 	private var timeStamp: Long = 0L
