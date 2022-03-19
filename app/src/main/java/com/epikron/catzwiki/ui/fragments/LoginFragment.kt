@@ -13,11 +13,12 @@ import com.epikron.catzwiki.presentation.PasswordValidation
 import com.epikron.catzwiki.ui.popInfoDialog
 import com.epikron.catzwiki.utils.*
 
-class LoginFragment : BaseFragment<LoginViewModel>(LoginViewModel::class) {
+class LoginFragment : BaseFragment<LoginViewModel>() {
 	companion object {
 		const val LOGIN_FRAGMENT_KEY = "login_fragment_key"
 	}
 
+	override val viewModelClass = LoginViewModel::class
 	override val binding: FragmentLoginBinding by viewBindings()
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +43,7 @@ class LoginFragment : BaseFragment<LoginViewModel>(LoginViewModel::class) {
 			} else {
 				showError(it.returnCode)
 			}
-		}.watch()
+		}.observe()
 	}
 
 	private fun processLogin() {

@@ -19,11 +19,12 @@ import com.epikron.catzwiki.utils.*
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlin.collections.ArrayList
 
-class CatListFragment : BaseFragment<CatListViewModel>(CatListViewModel::class) {
+class CatListFragment : BaseFragment<CatListViewModel>() {
 	companion object {
 		const val CAT_LIST_FRAGMENT_KEY = "cat_list_fragment_key"
 	}
 
+	override val viewModelClass = CatListViewModel::class
 	override val binding: FragmentCatListBinding by viewBindings()
 
 	private var breeds: List<CatButtonViewData> = listOf()
@@ -57,21 +58,19 @@ class CatListFragment : BaseFragment<CatListViewModel>(CatListViewModel::class) 
 		viewModel.getAllBreeds().subscribeBy(
 			onSuccess = { breedList -> setCatsLists(breedList) },
 			onError = { error -> showError(error) }
-		).watch()
+		).observe()
 		viewModel.displayCat().subscribe {
 			BottomFragment.popUp(BottomFragment.FragmentType.CAT_DETAILS, childFragmentManager)
-		}.watch()
+		}.observe()
 		viewModel.searchResult.subscribeBy(
 			onNext = { breedList ->
-				catListAdapter.setData(
-					breedList.map { it.toCatButtonData() }.sortedBy { it.name }
-				)
+				catListAdapter.setData(breedList.map { it.toCatButtonData() }.sortedBy { it.name })
 			},
 			onError = { error ->
 				showError(error)
 				catListAdapter.setData(breeds)
 			}
-		).watch()
+		).observe()
 	}
 
 	private fun showError(error: Throwable) {
@@ -111,9 +110,9 @@ class CatListFragment : BaseFragment<CatListViewModel>(CatListViewModel::class) 
 		catListAdapter.onItemClickListener =
 			{ _, item -> item.name?.let { viewModel.setDisplayCat(it) } }
 
-		binding.catSearchInput.doAfterTextChanged {
-			if (it?.isNotBlank() == true) {
-				viewModel.searchBreeds(it.toString())
+		binding.catSearchInput.doAfterTextChanged { editable ->
+			if (!editable.isNullOrBlank()) {
+				viewModel.searchBreeds(editable.toString())
 			} else {
 				catListAdapter.setData(breeds)
 			}

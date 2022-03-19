@@ -14,3 +14,10 @@ data class ImageModel(
 	val width: Int? = null,
 	val breeds: List<BreedModel>? = null
 )
+
+fun ImageModel.toSimpleImageModel() = SimpleImageModel(
+	height = this.height,
+	id = this.id,
+	url = this.url,
+	width = this.width
+)

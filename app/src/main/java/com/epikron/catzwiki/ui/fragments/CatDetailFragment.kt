@@ -6,12 +6,14 @@ import com.epikron.catzwiki.R
 import com.epikron.catzwiki.databinding.FragmentCatDetailBinding
 import com.epikron.catzwiki.presentation.CatDetailViewModel
 import com.epikron.catzwiki.utils.*
+import kotlin.reflect.KClass
 
-class CatDetailFragment : BaseFragment<CatDetailViewModel>(CatDetailViewModel::class) {
+class CatDetailFragment : BaseFragment<CatDetailViewModel>() {
 	companion object {
 		fun newInstance(bundle: Bundle?) = CatDetailFragment().apply { arguments = bundle }
 	}
 
+	override val viewModelClass = CatDetailViewModel::class
 	override val binding: FragmentCatDetailBinding by viewBindings()
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
