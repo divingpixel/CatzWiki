@@ -1,5 +1,6 @@
-package com.epikron.catzwiki.remote
+package com.epikron.catzwiki.injection
 
+import com.epikron.catzwiki.remote.CatApiService
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -21,8 +22,8 @@ class ApiModule {
 	@Provides
 	fun provideRetrofit(): Retrofit {
 		val httpClient = OkHttpClient.Builder()
-			.connectTimeout(120, TimeUnit.SECONDS)
-			.readTimeout(120, TimeUnit.SECONDS)
+			.connectTimeout(10, TimeUnit.SECONDS)
+			.readTimeout(10, TimeUnit.SECONDS)
 
 		return Retrofit.Builder()
 			.baseUrl(CATS_URL)
@@ -33,10 +34,5 @@ class ApiModule {
 	}
 
 	@Provides
-	fun provideBreedsService(retrofit: Retrofit): CatApiService =
-		retrofit.create(CatApiService::class.java)
-
-	@Provides
-	fun provideUserService(retrofit: Retrofit): UserService =
-		retrofit.create(UserService::class.java)
+	fun provideBreedsService(retrofit: Retrofit): CatApiService = retrofit.create(CatApiService::class.java)
 }

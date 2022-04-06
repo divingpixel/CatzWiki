@@ -4,7 +4,6 @@ import android.net.ConnectivityManager
 import android.net.Network
 import androidx.lifecycle.ViewModel
 import com.epikron.catzwiki.model.BreedModel
-import com.epikron.catzwiki.model.UserModel
 import com.epikron.catzwiki.remote.CatApiRepository
 import com.epikron.catzwiki.utils.Write
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -22,7 +21,6 @@ class MainViewModel @Inject constructor(private val catApiRepository: CatApiRepo
     val onlineStatus: BehaviorSubject<Boolean> = BehaviorSubject.create()
     val allBreeds: SingleSubject<List<BreedModel>> = SingleSubject.create()
     val selectedCat: BehaviorSubject<BreedModel> = BehaviorSubject.create()
-    val user: BehaviorSubject<UserModel> = BehaviorSubject.create()
     private val disposable: CompositeDisposable = CompositeDisposable()
 
     fun getAllBreeds() {

@@ -1,19 +1,12 @@
 <resources>
     <string name="app_name">CatzWiki</string>
 
-    <string name="login_button">Proceed</string>
-    <string name="enter_email">Enter your e-mail</string>
-    <string name="enter_password">Enter your password</string>
-    <string name="invalid_credentials">Invalid credentials</string>
-    <string name="login_error">Login error</string>
-    <string name="invalid_email_password">email: %1$s\npassword: %2$s </string>
     <string name="network_error">Network error</string>
     <string name="unknown_error">An unknown error has occurred!</string>
     <string name="no_internet">No internet connection</string>
     <string name="no_internet_text">Try to connect and try again later!</string>
 
     <string name="cat_image">Cat image</string>
-    <string name="cat_search">type to search</string>
     <string name="back_to_close">Press back again to close the app</string>
 
     <string name="details_country">Origin: %1$s</string>

@@ -40,7 +40,7 @@ abstract class BaseFragment<VM : ViewModel>(private val viewModelClass: KClass<V
 	@CallSuper
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-		viewModel = ViewModelProvider(requireActivity(), viewModelFactory)[viewModelClass.java]
+		viewModel = ViewModelProvider(this, viewModelFactory)[viewModelClass.java]
 		requestPermissionLauncher =
 			registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
 				if (isGranted) permissionPositiveAction?.invoke() else permissionNegativeAction?.invoke()
@@ -75,7 +75,7 @@ abstract class BaseFragment<VM : ViewModel>(private val viewModelClass: KClass<V
 		}
 	}
 
-	fun Disposable.watch() { fragmentDisposable.add(this) }
+	fun Disposable.observe() { fragmentDisposable.add(this) }
 
 	override fun onDestroyView() {
 		super.onDestroyView()
