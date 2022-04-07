@@ -17,35 +17,28 @@ import dagger.android.support.DaggerFragment
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import javax.inject.Inject
-import kotlin.reflect.KClass
 
 @Suppress("unused", "MemberVisibilityCanBePrivate", "UNCHECKED_CAST")
-abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
-    private val viewModelClass: KClass<VM>,
-    private val vbClazz: Class<VB>
-) : DaggerFragment() {
-
-    private var permissionPositiveAction: (() -> Unit)? = null
-    private var permissionNegativeAction: (() -> Unit)? = null
-
-    var onCloseListener: ((bundle: Bundle?) -> Unit)? = null
-    private val fragmentDisposable: CompositeDisposable = CompositeDisposable()
-
-    private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
-
-    protected lateinit var binding: VB
+abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(private val vmClazz: Class<VM>, private val vbClazz: Class<VB>) : DaggerFragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    var onCloseListener: ((bundle: Bundle?) -> Unit)? = null
+
+    private var permissionPositiveAction: (() -> Unit)? = null
+    private var permissionNegativeAction: (() -> Unit)? = null
+    private val fragmentDisposable: CompositeDisposable = CompositeDisposable()
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
+    protected lateinit var binding: VB
     protected lateinit var viewModel: VM
 
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = vbClazz.getMethod("inflate", LayoutInflater::class.java)(null, this.layoutInflater) as VB
-        viewModel = ViewModelProvider(this, viewModelFactory)[viewModelClass.java]
-        requestPermissionLauncher =
-            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+        viewModel = ViewModelProvider(this, viewModelFactory)[vmClazz]
+        requestPermissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
                 if (isGranted) permissionPositiveAction?.invoke() else permissionNegativeAction?.invoke()
             }
     }
@@ -65,9 +58,7 @@ abstract class BaseFragment<VB : ViewBinding, VM : ViewModel>(
     ) {
         permissionPositiveAction = positiveAction
         permissionNegativeAction = negativeAction
-        if (ActivityCompat.checkSelfPermission(context ?: requireContext(), permission)
-            == PackageManager.PERMISSION_GRANTED
-        ) {
+        if (ActivityCompat.checkSelfPermission(context ?: requireContext(), permission) == PackageManager.PERMISSION_GRANTED) {
             positiveAction?.invoke()
         } else {
             if (shouldShowRequestPermissionRationale(permission)) {

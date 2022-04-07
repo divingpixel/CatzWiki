@@ -20,7 +20,7 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlin.collections.ArrayList
 
 class CatListFragment : BaseFragment<FragmentCatListBinding, CatListViewModel>
-    (CatListViewModel::class, FragmentCatListBinding::class.java) {
+    (CatListViewModel::class.java, FragmentCatListBinding::class.java) {
     companion object {
         const val CAT_LIST_FRAGMENT_KEY = "cat_list_fragment_key"
     }
