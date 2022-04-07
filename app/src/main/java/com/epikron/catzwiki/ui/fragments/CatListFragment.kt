@@ -15,17 +15,15 @@ import com.epikron.catzwiki.ui.ListVerticalDecorator
 import com.epikron.catzwiki.ui.popInfoDialog
 import com.epikron.catzwiki.ui.views.CatButtonView
 import com.epikron.catzwiki.ui.views.CatDetailView
-import com.epikron.catzwiki.utils.*
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlin.collections.ArrayList
 
-class CatListFragment : BaseFragment<CatListViewModel>(CatListViewModel::class) {
+class CatListFragment : BaseFragment<FragmentCatListBinding, CatListViewModel>
+    (CatListViewModel::class, FragmentCatListBinding::class.java) {
     companion object {
         const val CAT_LIST_FRAGMENT_KEY = "cat_list_fragment_key"
     }
-
-    override val binding: FragmentCatListBinding by viewBindings()
 
     private var cats: List<CatButtonView.CatButtonViewData> = listOf()
     private var countries: ArrayList<String> = arrayListOf()
@@ -95,8 +93,8 @@ class CatListFragment : BaseFragment<CatListViewModel>(CatListViewModel::class) 
         )
     }
 
-    private fun showCat(cat : BreedModel) {
-        val customView = CatDetailView(requireContext()).apply { data = cat}
+    private fun showCat(cat: BreedModel) {
+        val customView = CatDetailView(requireContext()).apply { data = cat }
         MaterialAlertDialogBuilder(requireContext(), R.style.CustomDialogStyle)
             .setView(customView)
             .setNegativeButton(requireContext().getString(android.R.string.ok)) { dialog, _ -> dialog.dismiss() }
